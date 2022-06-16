@@ -1,58 +1,32 @@
 import "./App.css";
-import { useState, useReducer } from "react";
+import { useState } from "react";
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "ADD_A_TASK":
-      const newTask = action.task;
-      return [...state, newTask];
-    case "COMPLETE_A_TASK":
-      const index = action.index;
-      return [...state.slice(0, index), ...state.slice(index + 1)];
-    default:
-      return state;
-  }
-}
-
-function App() {
+function Input() {
   const [text, setText] = useState("");
-  const initialState = ["walk the cat", "buy a boat"];
-  const [tasks, dispatch] = useReducer(reducer, initialState);
 
   function handleChange(e) {
     setText(e.target.value);
   }
 
+  console.log(text);
+
+  return (
+    <div>
+      <input onChange={handleChange} value={text}></input>
+      <button>Add to List</button>
+    </div>
+  );
+}
+// we make a component that has an input and a button DONE
+// we set the current value of the input as equal to a variable DONE
+// every time that value updates, we set the state of text and update it DONE
+// the text state is whatever the current text in the input is DONE
+// we will later take this state of the input to copy it to an li on clicking a button
+
+function App() {
   return (
     <main className="App">
-      <div>
-        <input onChange={handleChange} value={text}></input>
-        <button
-          onClick={function () {
-            dispatch({ type: "ADD_A_TASK", task: text });
-          }}
-        >
-          Add
-        </button>
-      </div>
-      <div>
-        <ul>
-          {tasks.map(function (task, index) {
-            return (
-              <li>
-                {task}{" "}
-                <button
-                  onClick={function () {
-                    dispatch({ type: "COMPLETE_A_TASK", index: index });
-                  }}
-                >
-                  Done
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <Input />
     </main>
   );
 }
@@ -60,22 +34,6 @@ function App() {
 export default App;
 
 /*
-# TO-DO LIST APP
-
-**GOAL:**
-
-- Use React to create a to-do list app.
-
-**MVP:**
-
-- Users should be able to add a to-do to the list.
-- Users should be able to delete items off of the list displayed on the view.
-
-**STRETCH:**
-
-- Style with CSS for a clean UI.
-- Add additional functionality. The ability to update to-dos, to rank them by date and/or priority, to categorise etc.
-
 ## EASY VERSION: NO COMPONENTS
 
 ### App
