@@ -6,8 +6,6 @@ import { useState } from "react";
 // every time that value updates, we set the state of text and update it DONE
 // the text state is whatever the current text in the input is DONE
 
-const taskArray = [];
-
 function Input({ handleChange, handleAdd, text }) {
   return (
     <div>
@@ -25,7 +23,7 @@ function Input({ handleChange, handleAdd, text }) {
 // atm, i don't have a component for rendering the list, i just render it via mapping in the app function
 
 function App() {
-  const [tasks, setTasks] = useState(taskArray);
+  const [tasks, setTasks] = useState([]);
   const [text, setText] = useState("");
 
   function handleChange(e) {
@@ -33,8 +31,24 @@ function App() {
   }
 
   function handleAdd() {
-    const newTasks = tasks.concat({ todo: text });
+    const newTasks = tasks.concat({ todo: text, id: tasks.length + 1 });
     setTasks(newTasks);
+    setText("");
+  }
+
+  // now i'm trying to create the handleDelete function for the delete button on each todo
+  // add a basic id to the tasks items by setting the id as equal to tasks.length++
+  // this lets me set the key when the lis render
+  // when i handleDelete, i hand in this id/key
+  // handle delete declares a constant of removeItem, which immutably filters the tasks state
+  // and then hands back all the ones that DONT match the handed in id
+  // then we update state and setTasks with the new removeItem const
+
+  function handleDelete(id) {
+    const removeItem = tasks.filter((item) => {
+      return item.id !== id;
+    });
+    setTasks(removeItem);
   }
 
   return (
@@ -42,7 +56,12 @@ function App() {
       <Input handleChange={handleChange} handleAdd={handleAdd} text={text} />
       <ul>
         {tasks.map((item) => (
-          <li>{item.todo}</li>
+          <li key={item.id}>
+            {item.todo}
+            <button onClick={() => handleDelete(item.id)} item={item}>
+              Delete
+            </button>
+          </li>
         ))}
       </ul>
     </main>
