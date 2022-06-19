@@ -1,8 +1,14 @@
 function Input({ handleChange, handleAdd, text }) {
   return (
     <div>
-      <input onChange={handleChange} value={text}></input>
-      <button onClick={handleAdd}>Add to List</button>
+      <input
+        onChange={handleChange}
+        value={text}
+        placeholder="Enter task here..."
+      ></input>
+      <button onClick={handleAdd} disabled={!text}>
+        Add to List
+      </button>
     </div>
   );
 }
