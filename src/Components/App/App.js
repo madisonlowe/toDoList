@@ -14,20 +14,20 @@ function List({ tasks, handleDelete }) {
   return (
     <ul>
       {tasks.map((item) => (
-        <li key={item.id}>
-          {item.todo}
-          <button onClick={() => handleDelete(item.id)} item={item}>
-            Delete
-          </button>
-        </li>
+        <ListItem id={item.id} text={item.todo} handleDelete={handleDelete} />
       ))}
     </ul>
   );
 }
 
-// now i want to take out the bit of the List component that creates the actual individual entry
-// ListItem should take in text and handleDelete as props
-// when the button is clicked, call the delete function at this index to delete this item
+function ListItem({ id, text, handleDelete }) {
+  return (
+    <li>
+      {text}
+      <button onClick={() => handleDelete(id)}>Delete</button>
+    </li>
+  );
+}
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -85,3 +85,11 @@ export default App;
 // i want to make a List component now
 // this will take in the array of to dos and the delete function as props
 // it will render an array of ListItems inside a ul on the screen
+
+// now i want to take out the bit of the List component that creates the actual individual entry
+// ListItem should take in text and handleDelete as props
+// when the button is clicked, call the delete function at this index to delete this item
+// my handleDelete works by id, so i also handed in an id as a prop, which is set in List
+// List hands id, text and handleDelete to each ListItem
+// each ListItem then creates an li with a button that uses these props to render text, and delete with an id
+// ListItem is a child component of List
