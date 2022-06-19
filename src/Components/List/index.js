@@ -1,4 +1,5 @@
 import ListItem from "../ListItem";
+import "./List.css";
 
 function List({ tasks, handleDelete }) {
   return (

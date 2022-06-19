@@ -1,0 +1,22 @@
+li {
+  padding: 5px 0px;
+  text-align: left;
+  word-wrap: break-word;
+  width: 50px;
+  display: inline;
+}
+
+.delete-button {
+  border-radius: 50%;
+  border: 1px solid maroon;
+  background: maroon;
+  width: 25px;
+  height: 25px;
+  float: right;
+  display: inline;
+}
+
+.delete-button:hover {
+  border: 1px solid red;
+  background: red;
+}

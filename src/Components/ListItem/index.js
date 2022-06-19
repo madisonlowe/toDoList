@@ -1,9 +1,13 @@
+import "./ListItem.css";
+
 function ListItem({ id, text, handleDelete }) {
   return (
-    <li>
-      {text}
-      <button onClick={() => handleDelete(id)}>Delete</button>
-    </li>
+    <div>
+      <li>{text}</li>
+      <button className="delete-button" onClick={() => handleDelete(id)}>
+        X
+      </button>
+    </div>
   );
 }
 
