@@ -10,14 +10,24 @@ function Input({ handleChange, handleAdd, text }) {
   );
 }
 
-// now i want to separate my ListItem function out into a component
-// ListItem renders the text on the page and holds the delete function
-// i declare a component
-// i hand in what the ListItem component needs, which is handleDelete and text
+function List({ tasks, handleDelete }) {
+  return (
+    <ul>
+      {tasks.map((item) => (
+        <li key={item.id}>
+          {item.todo}
+          <button onClick={() => handleDelete(item.id)} item={item}>
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
-// i also want to make a List component
-// this will take in the array of to dos and the delete function as props
-// it will render an array of ListItems inside a ul
+// now i want to take out the bit of the List component that creates the actual individual entry
+// ListItem should take in text and handleDelete as props
+// when the button is clicked, call the delete function at this index to delete this item
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -43,16 +53,7 @@ function App() {
   return (
     <main className="App">
       <Input handleChange={handleChange} handleAdd={handleAdd} text={text} />
-      <ul>
-        {tasks.map((item) => (
-          <li key={item.id}>
-            {item.todo}
-            <button onClick={() => handleDelete(item.id)} item={item}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+      <List handleDelete={handleDelete} tasks={tasks} />
     </main>
   );
 }
@@ -80,3 +81,7 @@ export default App;
 // handle delete declares a constant of removeItem, which immutably filters the tasks state
 // and then hands back all the ones that DONT match the handed in id
 // then we update state and setTasks with the new removeItem const
+
+// i want to make a List component now
+// this will take in the array of to dos and the delete function as props
+// it will render an array of ListItems inside a ul on the screen
