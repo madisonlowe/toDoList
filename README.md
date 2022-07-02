@@ -27,5 +27,6 @@ npm test
 Upcoming goals include:
 
 - Adding mobile responsiveness.
+- Add unit and integration tests.
 - Cleaning up the CSS to be a little more exciting.
 - Deployment to GitHub pages.
