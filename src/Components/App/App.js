@@ -1,10 +1,15 @@
 import "./App.css";
 import { useState } from "react";
+import Header from "../Header";
 import Input from "../Input";
 import List from "../List";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([
+    { todo: "Walk the cat round the garden." },
+    { todo: "Arrange hike with Mum." },
+    { todo: "Send Dad that gyoza recipe." },
+  ]);
   const [text, setText] = useState("");
 
   function handleChange(e) {
@@ -26,6 +31,7 @@ function App() {
 
   return (
     <main className="App">
+      <Header />
       <Input handleChange={handleChange} handleAdd={handleAdd} text={text} />
       <List handleDelete={handleDelete} tasks={tasks} />
     </main>

@@ -2,12 +2,12 @@ import "./ListItem.css";
 
 function ListItem({ id, text, handleDelete }) {
   return (
-    <div>
-      <li>{text}</li>
+    <li>
+      {text}{" "}
       <button className="delete-button" onClick={() => handleDelete(id)}>
-        X
+        Delete
       </button>
-    </div>
+    </li>
   );
 }
 

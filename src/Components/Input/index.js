@@ -6,7 +6,7 @@ function Input({ handleChange, handleAdd, text }) {
       <input
         onChange={handleChange}
         value={text}
-        placeholder="Enter task here..."
+        placeholder="Type your task to do here..."
       ></input>
       <button className="input-button" onClick={handleAdd} disabled={!text}>
         Add to List
